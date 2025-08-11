@@ -1,0 +1,14 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* print-friendly */
+@media print {
+  body { -webkit-print-color-adjust: exact; }
+  .no-print { display: none !important; }
+  .print-card { box-shadow: none !important; }
+}
+
+.card { @apply rounded-lg shadow-md p-4 bg-white; }
+
+.table-area { @apply p-4 grid gap-4; }
