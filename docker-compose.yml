@@ -32,12 +32,12 @@ services:
     # FLUSH PRIVILEGES; #必须先运行
     #
     # -- 然后尝试修改 root 本地账户和创建 root@'%'
-    # ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'Aj6q3p6F';
-    # CREATE USER IF NOT EXISTS 'root'@'%' IDENTIFIED WITH mysql_native_password BY 'Aj6q3p6F';
+    # ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'MYSQLpassword_2setting';
+    # CREATE USER IF NOT EXISTS 'root'@'%' IDENTIFIED WITH mysql_native_password BY 'MYSQLpassword_2setting';
     # GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' WITH GRANT OPTION;
     #
     # -- 确保 pontoon 用户也存在并允许远程连接
-    # CREATE USER IF NOT EXISTS 'pontoon'@'%' IDENTIFIED WITH mysql_native_password BY 'blackjack';
+    # CREATE USER IF NOT EXISTS 'pontoon'@'%' IDENTIFIED WITH mysql_native_password BY 'databasePass_2setting';
     # GRANT ALL PRIVILEGES ON pontoon_db.* TO 'pontoon'@'%';
     #
     # FLUSH PRIVILEGES;
