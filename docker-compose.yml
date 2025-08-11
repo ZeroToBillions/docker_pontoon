@@ -22,7 +22,31 @@ services:
       retries: 10
     networks:
       - pontoon-net
-
+    # command: ["--skip-grant-tables","--skip-networking"] 
+    ## 数据库无法启动的时候启用该命令
+    #1 停止服务docker-compose down
+    #2 将command命令启用
+    #3 只启动db，命令docker-compose up -d db
+    #4 登录MySQL，命令docker exec -it pontoon_db mysql
+    #5 运行SQL命令，增加权限：
+    # FLUSH PRIVILEGES; #必须先运行
+    #
+    # -- 然后尝试修改 root 本地账户和创建 root@'%'
+    # ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'Aj6q3p6F';
+    # CREATE USER IF NOT EXISTS 'root'@'%' IDENTIFIED WITH mysql_native_password BY 'Aj6q3p6F';
+    # GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' WITH GRANT OPTION;
+    #
+    # -- 确保 pontoon 用户也存在并允许远程连接
+    # CREATE USER IF NOT EXISTS 'pontoon'@'%' IDENTIFIED WITH mysql_native_password BY 'blackjack';
+    # GRANT ALL PRIVILEGES ON pontoon_db.* TO 'pontoon'@'%';
+    #
+    # FLUSH PRIVILEGES;
+    # SELECT User,Host,plugin FROM mysql.user\G
+    #6 退出MySQL，命令exit
+    #7 停止容器，命令docker-compose down
+    #8 用注释去除command命令
+    #9 重新启动容器，命令docker-compose up -d
+    
   phpmyadmin:
     image: phpmyadmin/phpmyadmin:latest
     container_name: pontoon_phpmyadmin
